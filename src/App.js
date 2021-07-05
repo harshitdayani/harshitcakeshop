@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Testing initial commit.</p>
+        <p>Testing initial commit</p>
       </header>
     </div>
   );
