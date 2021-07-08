@@ -1,13 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from "./Navbar";
+import Carousel from "./Carousel";
+import CakeList from "./CakeList";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Testing initial commit</p>
-      </header>
+    <div>
+      <Navbar />
+      <Carousel />
+      <div className="p-3 mx-5 my-3 border bg-light"></div>
+      <CakeList />
     </div>
   );
 }
