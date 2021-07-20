@@ -1,6 +1,22 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
+export default function Navbar(props) {
 
-export default function Navbar() {
+    console.log(props);
+
+    let [searchText, setSearchText] = useState("");
+
+    let handleSearchText = (e) => {
+        setSearchText(e.target.value);
+    }
+
+    let search = () => {
+        // props.fun(searchText);
+        console.log(searchText);
+        props.history.push("/search?q=" + searchText);
+    }
+
     return (<nav className="navbar navbar-expand-lg navbar-light bg-light">
         <p className="navbar-brand" >Navbar</p>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,7 +25,7 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav">
                 <li className="nav-item active">
-                    <p className="nav-link" >Home <span className="sr-only">(current)</span></p>
+                    <Link to="/home"> <p className="nav-link" >Home <span className="sr-only">(current)</span></p> </Link>
                 </li>
                 <li className="nav-item">
                     <p className="nav-link" >About</p>
@@ -27,6 +43,13 @@ export default function Navbar() {
                         <p className="dropdown-item" >Something else here</p>
                     </div>
                 </li> */}
+
+                <li>
+                    <div className="form-inline">
+                        <input value={searchText} onChange={handleSearchText} className="form-control mr-sm-2" type="text" placeholder="Search" />
+                        <button onClick={search} className="btn btn-success" type="submit">Search</button>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>

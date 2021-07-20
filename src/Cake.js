@@ -2,7 +2,7 @@ import { FaRupeeSign } from 'react-icons/fa';
 import { FiShoppingCart } from 'react-icons/fi';
 
 const Cake = (props) => {
-    console.log(props.cake);
+    // console.log(props.cake);
     return (
         <div className="col-md-3">
             <section className="panel">
