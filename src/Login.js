@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom";
+import LoginImage from "./assets/login.jpg";
 
 const Login = () => {
     var [errorMessage, setErrorMessage] = useState();
@@ -33,25 +35,25 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <div className="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input onChange={handleEmail} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div className="wrapper fadeInDown">
+            <div id="formContent">
+
+                <div className="fadeIn first">
+                    <img src={LoginImage} id="icon" alt="User Icon" />
+                </div>
+
+                <div>
+                    <input onChange={handleEmail} type="text" className="form-control fadeIn second" id="login" aria-describedby="emailHelp" placeholder="Enter email" />
+                    <input onChange={handlePassword} type="text" className="form-control fadeIn third" id="password" placeholder="Password" />
+                    <input type="submit" value="Log In" onClick={login} className="fadeIn fourth" />
+                </div>
+
+                <div id="formFooter">
+                    <p class="underlineHover">Forgot Password?</p>
+                    <Link className="nav-link" to="/signup"><p className="underlineHover">Create Account</p></Link>
+                </div>
+
             </div>
-
-            <div className="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input onChange={handlePassword} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-            </div>
-
-            {/* <div className="form-check">
-                <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                <label className="form-check-label" for="exampleCheck1">Check me out</label>
-            </div> */}
-
-            <button type="submit" onClick={login} className="btn btn-primary">Login</button>
-
         </div>
     );
 }

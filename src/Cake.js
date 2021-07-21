@@ -3,8 +3,12 @@ import { FiShoppingCart } from 'react-icons/fi';
 
 const Cake = (props) => {
     // console.log(props.cake);
+    function showDetails(){
+        props.history.push("/cake/"+props.cake.cakeid);
+    }
+    
     return (
-        <div className="col-md-3">
+        <div onClick={showDetails} className="col-md-3">
             <section className="panel">
                 <div className="pro-img-box">
                     <img className="product_img" src={props.cake.image} alt="" />

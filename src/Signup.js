@@ -1,5 +1,6 @@
-// import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import Register from "./assets/register.jpg";
 
 const Signup = () => {
     let user = {};
@@ -32,27 +33,27 @@ const Signup = () => {
     }
 
     return (
-        <div>
-            <div className="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input name="name" onChange={handleName} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name" />
-                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div className="wrapper fadeInDown">
+            <div id="formContent">
+
+                <div className="fadeIn first">
+                    <img src={Register} id="icon" alt="Register" />
+                </div>
+
+                <div>
+                    <input onChange={handleName} type="text" className="form-control fadeIn second" id="name" aria-describedby="emailHelp" placeholder="Enter Name" />
+                    <input name="email" onChange={handleEmail} type="text" className="form-control fadeIn third" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
+                    <input name="password" onChange={handlePassword} type="text" className="form-control fadeIn fourth" id="password" placeholder="Password" />
+                    <input type="submit" value="Register" onClick={signup} className="fadeIn fifth" />
+                </div>
+
+                <div id="formFooter">
+                    <Link className="nav-link" to="/login"><p className="underlineHover">Login</p></Link>
+                </div>
+
             </div>
-
-            <div className="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input name="email" onChange={handleEmail} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-
-            <div className="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input name="password" onChange={handlePassword} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-            </div>
-
-            <button type="submit" onClick={signup} className="btn btn-primary">Sign Up</button>
-
         </div>
+
     );
 }
 
