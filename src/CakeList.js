@@ -1,30 +1,28 @@
 import Cake from "./Cake";
 import { GiCook } from 'react-icons/gi';
-// import axios from 'axios';
-// import { useState, useEffect } from 'react';
-import cakesData from "./cakesdata";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 const CakeList = (props) => {
-    // var [cakes, setCakes] = useState([]);
+    var [cakes, setCakes] = useState([]);
 
-    // useEffect(() => {
-    //     let apiurl = process.env.REACT_APP_BASE_API_URL + "/allcakes";
-    //     axios({
-    //         url: apiurl,
-    //         method: "get"
-    //     }).then((response) => {
-    //         console.log("Response from api: ", response);
-    //         setCakes(response.data.data);
-    //     }, (error) => {
-    //         console.log("Response from cake api: ", error);
-    //     });
-    // }, []);
+    useEffect(() => {
+        let apiurl = process.env.REACT_APP_BASE_API_URL + "/allcakes";
+        axios({
+            url: apiurl,
+            method: "get"
+        }).then((response) => {
+            setCakes(response.data.data);
+        }, (error) => {
+            console.log("Response from cake api: ", error);
+        });
+    }, []);
 
-    console.log("new cakes from api: ", cakesData);
+    console.log("Response from cake API: ", cakes);
 
     let cakeHTML;
-    if (cakesData.length > 0) {
-        cakeHTML = cakesData.map((each, index) => (
+    if (cakes.length > 0) {
+        cakeHTML = cakes.map((each, index) => (
             <Cake history={props.history} cake={each} key={index} />
         ));
     } else {

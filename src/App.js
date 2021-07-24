@@ -7,7 +7,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import Home from './Home';
 import Search from './search';
 import AddCake from './AddCake';
-import CakeDetails from './CakeDetails';
+import CakeDetails from "./CakeDetails/CakeDetails";
+import { useState } from 'react';
 
 function App() {
 
@@ -15,14 +16,20 @@ function App() {
   // let handleSearch = function (searchString) {
   //   setSearchText(searchString);
   // }
+  var [isUserLoggedIn, setUserLoggedIn] = useState(localStorage.token ? true : false);
+
+  function loggedIn() {
+      setUserLoggedIn(true);
+  }
 
   return (
     <div>
       <Router>
-        <Navbar>Cakes Gallery</Navbar>
+        <Navbar isUserLoggedIn={isUserLoggedIn} />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/login" exact component={Login} />
+          {/* <Route path="/login" exact component={Login} loggedin={loggedIn} /> */}
+          <Route exact path="/login"> <Login loggedin={loggedIn} /></Route>
           <Route path="/signup" exact component={Signup} />
           <Route path="/search" exact component={Search} />
           <Route path="/addcake" exact component={AddCake} />

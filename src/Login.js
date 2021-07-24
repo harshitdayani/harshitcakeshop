@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import LoginImage from "./assets/login.jpg";
 
-const Login = () => {
-    var [errorMessage, setErrorMessage] = useState();
+const Login = (props) => {
+    const routeHistory = useHistory();
+    // var [errorMessage, setErrorMessage] = useState();
     let user = {};
-    useEffect(() => {
-        // alert("Component Mounted");
-    }, [errorMessage]);
+    // useEffect(() => {
+    // }, [errorMessage]);
 
     var login = function () {
         console.log("User has entered: ", user);
-        setErrorMessage(Date.now());
+        // setErrorMessage(Date.now());
 
         let apiurl = "https://apifromashu.herokuapp.com/api/login";
         axios({
@@ -21,6 +21,13 @@ const Login = () => {
             data: user
         }).then((response) => {
             console.log("Response from login api: ", response);
+            if (response.data.token) {
+                props.loggedin();
+                localStorage.token = response.data.token;
+                routeHistory.push("/");
+            } else {
+                alert("Invalid Credentials");
+            }
         }, (error) => {
             console.log("Response from login api: ", error);
         });
