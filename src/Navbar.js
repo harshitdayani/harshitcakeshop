@@ -4,8 +4,6 @@ import CakeBrand from "./assets/CakeBrand.png";
 
 function Navbar(props) {
 
-    console.log(">>>>>>", props);
-
     let [searchText, setSearchText] = useState("");
 
     let handleSearchText = (event) => {
@@ -13,8 +11,6 @@ function Navbar(props) {
     }
 
     let search = () => {
-        // e.preventDefault();
-        console.log(searchText);
         props.history.push("/search?q=" + searchText);
     }
 
@@ -52,7 +48,7 @@ function Navbar(props) {
 
                         {props.isUserLoggedIn &&
                             <p className="m-sm-2">
-                                <button className="btn btn-danger" type="submit">Logout</button>
+                                <button className="btn btn-danger"  type="submit">Logout</button>
                             </p>}
 
                         {!props.isUserLoggedIn &&
@@ -64,22 +60,6 @@ function Navbar(props) {
                     </div>
 
                 </span>
-
-                {/* <ul className="navbar-nav mr-auto ">
-                    {props.isUserLoggedIn &&
-                        <li className="nav-item">
-                            <p className="nav-link">
-                                <button className="btn btn-danger" type="submit">Logout</button>
-                            </p>
-                        </li>}
-
-                    {props.isUserLoggedIn &&
-                        <li className="nav-item">
-                            <p className="nav-link">
-                                <button className="btn btn-success" type="submit">Cart</button>
-                            </p>
-                        </li>}
-                </ul> */}
             </div>
         </nav >
     );

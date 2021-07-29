@@ -9,6 +9,8 @@ import Search from './search';
 import AddCake from './AddCake';
 import CakeDetails from "./CakeDetails/CakeDetails";
 import { useState } from 'react';
+import 'toastr/build/toastr.min.css';
+
 
 function App() {
 
@@ -19,7 +21,7 @@ function App() {
   var [isUserLoggedIn, setUserLoggedIn] = useState(localStorage.token ? true : false);
 
   function loggedIn() {
-      setUserLoggedIn(true);
+    setUserLoggedIn(true);
   }
 
   return (

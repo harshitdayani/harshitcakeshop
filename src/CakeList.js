@@ -2,9 +2,12 @@ import Cake from "./Cake";
 import { GiCook } from 'react-icons/gi';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import Loading from "./Loading/loading";
+import toastr from 'toastr';
 
 const CakeList = (props) => {
     var [cakes, setCakes] = useState([]);
+    var [loadingBool, setLoadingBool] = useState(true);
 
     useEffect(() => {
         let apiurl = process.env.REACT_APP_BASE_API_URL + "/allcakes";
@@ -12,7 +15,17 @@ const CakeList = (props) => {
             url: apiurl,
             method: "get"
         }).then((response) => {
+            setLoadingBool(false);
+            
             setCakes(response.data.data);
+            toastr.options = {
+                positionClass: 'toast-top-full-width',
+                hideDuration: 300,
+                timeOut: 4000
+            }
+            toastr.clear();
+            setTimeout(() => toastr.success(`Welcome to the Cake Gallery.`), 300);
+
         }, (error) => {
             console.log("Response from cake api: ", error);
         });
@@ -37,7 +50,7 @@ const CakeList = (props) => {
     return (
         <div className="container mb-5">
             <div className="row product-list">
-                {cakeHTML}
+                {loadingBool ? <Loading /> : cakeHTML}
             </div>
         </div>
     );
