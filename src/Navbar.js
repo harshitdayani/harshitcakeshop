@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import CakeBrand from "./assets/CakeBrand.png";
+import toastr from 'toastr';
 
 function Navbar(props) {
 
@@ -12,6 +13,19 @@ function Navbar(props) {
 
     let search = () => {
         props.history.push("/search?q=" + searchText);
+    }
+
+    let logout = () => {
+        localStorage.clear();
+        window.location.reload();
+
+        toastr.options = {
+            positionClass: 'toast-top-full-width',
+            hideDuration: 300,
+            timeOut: 60000
+        }
+        toastr.clear();
+        setTimeout(() => toastr.success(`Logged out successfully.`), 300);
     }
 
     return (
@@ -48,7 +62,7 @@ function Navbar(props) {
 
                         {props.isUserLoggedIn &&
                             <p className="m-sm-2">
-                                <button className="btn btn-danger"  type="submit">Logout</button>
+                                <button onClick={logout} className="btn btn-danger" type="submit">Logout</button>
                             </p>}
 
                         {!props.isUserLoggedIn &&

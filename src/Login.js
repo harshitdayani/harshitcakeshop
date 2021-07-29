@@ -8,7 +8,6 @@ import toastr from 'toastr';
 const Login = (props) => {
     const routeHistory = useHistory();
     var [loadingBool, setLoadingBool] = useState(true);
-
     var [errorMessage, setErrorMessage] = useState('');
     let user = {};
     // useEffect(() => {
@@ -18,7 +17,7 @@ const Login = (props) => {
         event.preventDefault();
         setLoadingBool(false);
 
-        let apiurl = "https://apifromashu.herokuapp.com/api/login";
+        let apiurl = process.env.REACT_APP_BASE_API_URL + "/login";
         console.log(">>>>>", user.email, user.password);
 
         if (user.email !== undefined && user.password !== undefined) {
@@ -87,7 +86,7 @@ const Login = (props) => {
                     </div>
 
                     <div id="formFooter">
-                        <p class="underlineHover">Forgot Password?</p>
+                    <Link className="nav-link" to="/forgotPassword"><p class="underlineHover">Forgot Password?</p></Link>
                         <Link className="nav-link" to="/signup"><p className="underlineHover">Create Account</p></Link>
                     </div>
 

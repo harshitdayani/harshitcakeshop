@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import Home from './Home';
 import Search from './search';
 import AddCake from './AddCake';
+import ForgotPassword from './ForgotPassword';
 import CakeDetails from "./CakeDetails/CakeDetails";
 import { useState } from 'react';
 import 'toastr/build/toastr.min.css';
@@ -36,6 +37,7 @@ function App() {
           <Route path="/search" exact component={Search} />
           <Route path="/addcake" exact component={AddCake} />
           <Route path="/cake/:cakeid" exact component={CakeDetails} />
+          <Route path="/forgotPassword" exact component={ForgotPassword} />
           <Route path="**"><Redirect to="/"></Redirect> </Route>
         </Switch>
       </Router>
